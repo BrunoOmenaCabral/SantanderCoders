@@ -1,0 +1,35 @@
+h1 {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 60px
+}
+
+p {
+    font-size: 20px;
+    margin-right:400px;
+    text-align: justify;
+    margin-left: 400px;
+}
+
+body {
+    background-color: rgb(175, 238, 217);
+    margin: 0;
+    
+}
+
+img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    display: block; 
+}
+
+
+
+
+.formto {
+    text-align:justify;
+    margin-left: 400px;
+    margin-top: -35px;
+}

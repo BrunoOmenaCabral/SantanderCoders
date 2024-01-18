@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrida Solidária</title>
+    <link rel="stylesheet" href="index.css">
+    <script>
+        function mostrarAlerta() {
+            alert("Cadastro realizado com sucesso!");
+        }
+    </script>
+</head>
+<body>
+    
+    <article>
+        <img src="https://www.anapolis.go.gov.br/wp-content/uploads/2023/04/WhatsApp-Image-2023-04-20-at-16.17.32.jpeg" alt="fundo">
+        <h1>Corrida Sopão Solidário</h1>
+         <br>
+    </article>
+    <p>Meus amigos corredores e demais interessados, como vocês bem sabem, <strong>já agendamos para 25/04/24 a corrida solidária anual, com o objetivo de arrecadar dinheiro para o projeto Sopão Solidário.</strong></p>
+    <br> <br>
+    <div class="formto">
+              
+            <form action="dbsolidario" onsubmit="mostrarAlerta()">
+                
+                <h2 style="text-align: justify;">Preencha seus dados:</h2>
+                <label for="name">Nome Completo</label>
+                <input type="text">
+                
+                <br> <br>
+                
+                <label for="email">Email:</label>
+                <input type="email">
+                
+                <br> <br>
+                
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" name="idade" min="15" max="90">
+                
+                <br> <br>
+                
+                <label for="camisa">Tamanho da camisa:</label> <br><br>
+                <input type="radio" name="camisa" value="camisaP"> P <br>
+                <input type="radio" name="camisa" value="camisaM"> M <br>
+                <input type="radio" name="camisa" value="camisaG"> G <br>
+                <input type="radio" name="camisa" value="camisaGG"> GG <br>
+                <input type="radio" name="camisa" value="camisaXG"> XG <br>
+                
+                <br><br>
+
+                <label for="tipodecorrida">Categoria de inscrição:</label> <br> <br>
+                <input type="radio" name="corrida" value="corrida 3km"> Corrida 3km [3RUN] <br>
+                <input type="radio" name="corrida" value="corrida 5km"> Corrida 5km [5RUN] <br>
+                <input type="radio" name="corrida" value="caminhada 4km"> Caminhada 4km [4WALK] <br>
+                <br><br>
+
+                <label for="">Doação:</label> 
+                <input type="text">
+                <br>
+                <br>
+                <label for="Enviar">Clique aqui para finalizar a inscrição:</label>
+                <input type="submit">
+
+            </form>
+            <br><br>      
+    </div>
+</body>
+</html>
+
+
+<!--
+Site: https://vargasleticia.notion.site/Aula-3-Criar-um-formul-rio-funcional-em-HTML-238016dc2ab84dc8ad2e277e51e34122
+
+-->
