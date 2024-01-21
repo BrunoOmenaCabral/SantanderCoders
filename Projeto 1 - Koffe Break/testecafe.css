@@ -1,0 +1,166 @@
+body {
+    background-color: rgb(226, 221, 221);
+    margin: 0;
+}
+
+header {
+    background-color: rgb(160, 111, 88);
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    height: 198px;
+}
+
+.list ul {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 3px; 
+    margin: 0;  
+    padding: 7px;
+}
+
+.list ul:last-child {
+    margin-right: 0;
+}
+
+.list ul a {
+text-decoration: none;
+color: white;
+font-size: 12px;
+border:  solid #ccc;
+border-radius: 5px;
+font-size: 15px;
+padding: 5px;
+background-color: #313431
+}
+
+.imgt {
+    float: right;
+    margin-right: 0;
+    margin-top: -2px;
+      
+}
+
+.conteudo {
+    overflow: hidden;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 255, 255);
+}
+
+.conteudo h1{
+    font-size: 30px;
+}
+
+.imgt2 {
+    float: left;
+    margin-left: -22px;
+    margin-top: -2px;
+}
+
+.corpo {
+    font-size: 25px;
+    text-align: justify;
+    margin-right: 760px;
+    margin-left: 30px;
+    padding-top: 50px;
+}
+
+.cft2 {
+    float: right;
+    margin-right: -16cm;
+    margin-top: -528px;
+    padding-top: -30px;    
+    opacity: 95%;
+    
+}
+
+.cards-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px; 
+    margin-top: -100px;
+}
+
+.card {
+    display: inline-block;
+    width: 285px;
+    margin-right: 15px;
+    margin-top: 100px ;
+    border: 1px solid #a06f58;
+    border-radius: 8px;
+    overflow: hidden;  
+}
+
+.demTable {
+    border:2px solid #938a8a;
+    border-collapse:separate;
+    padding:0px;
+    margin: 0 auto;
+}
+.demTable th {
+    border:2px solid #938a8a;
+    padding:0px;
+    background: #a06f58;
+    color: #fefefe;
+}
+.demTable td {
+    border:2px solid #938a8a;
+    text-align:center;
+    padding:0px;
+    background: #bfb0b0;
+    color: #313030;
+}
+
+.final {
+    background-color: rgb(160, 111, 88);
+    overflow: hidden;
+    margin-top: 20px;
+    
+}
+
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+}
+
+.btn-subir-topo {
+    float: right;
+    border-bottom: 3;
+    background-color: #313431;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor:context-menu;
+    margin-top: -40px;
+}
+
+.btn-subir-topo a {
+    color: white;
+    text-decoration: none;
+}
+
+.input-field {
+    width: 20%; 
+    padding: 2px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 5px;
+    background-color:#b7917f;
+    border: 2px solid #000000
+}
+
+.formulario {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.txt2 {
+    margin-top: 150px;
+    text-align: center;
+    color: rgb(160, 111, 88);
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: 30px;
+}
