@@ -2,13 +2,13 @@
 
 Servidor da aplicação e API, em Node.js sem nenhuma dependência externa.
 Guarda os dados em SQLite (banco embutido do próprio Node) e serve a interface
-que está em `sentinela/`.
+que está em `sentinela/`. Requer Node.js 22 ou superior.
 
 ## Executar
 
 ```bash
 cd servidor
-npm start                 # node --experimental-sqlite src/principal.js
+npm start                 # node src/principal.js
 # abra http://localhost:3000
 ```
 
@@ -31,7 +31,7 @@ SENTINELA_ADMIN_EMAIL=voce@escritorio.adv.br SENTINELA_ADMIN_SENHA='sua-senha-fo
 ## Testes
 
 ```bash
-node --experimental-sqlite servidor/testes/testes.mjs
+node servidor/testes/testes.mjs
 ```
 
 São 28 verificações de ponta a ponta: autenticação, bloqueio por tentativas,
@@ -139,7 +139,7 @@ Environment=PORTA=3000
 Environment=HOST=127.0.0.1
 Environment=SENTINELA_HTTPS=true
 Environment=SENTINELA_DADOS=/var/lib/sentinela
-ExecStart=/usr/bin/node --experimental-sqlite src/principal.js
+ExecStart=/usr/bin/node src/principal.js
 Restart=always
 
 [Install]

@@ -201,6 +201,15 @@ export async function iniciar() {
     }
   });
 
+  servidor.on('error', (e) => {
+    if (e.code === 'EADDRINUSE') {
+      console.error(`\nA porta ${config.porta} já está em uso. Encerre o outro servidor `
+        + 'ou inicie em outra porta, por exemplo: PORTA=3001 npm start\n');
+      process.exit(1);
+    }
+    throw e;
+  });
+
   servidor.listen(config.porta, config.host, () => {
     console.log(`Sentinela em http://localhost:${config.porta}`);
     if (inicial) {

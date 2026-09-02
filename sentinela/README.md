@@ -47,7 +47,7 @@ ES exigem origem HTTP.
 
 ```bash
 node sentinela/testes/testes.mjs                      # 37 verificações do núcleo
-node --experimental-sqlite servidor/testes/testes.mjs # 28 verificações da API
+node servidor/testes/testes.mjs                       # 28 verificações da API
 ```
 
 O primeiro cobre validação do número CNJ, calendário forense, contagem de prazos,

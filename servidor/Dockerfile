@@ -14,4 +14,4 @@ USER app
 VOLUME ["/dados"]
 EXPOSE 3000
 
-CMD ["node", "--experimental-sqlite", "servidor/src/principal.js"]
+CMD ["node", "servidor/src/principal.js"]

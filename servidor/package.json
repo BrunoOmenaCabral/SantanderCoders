@@ -6,7 +6,7 @@
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "start": "node --experimental-sqlite src/principal.js",
-    "test": "node --experimental-sqlite testes/testes.mjs"
+    "start": "node src/principal.js",
+    "test": "node testes/testes.mjs"
   }
 }

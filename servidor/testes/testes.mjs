@@ -2,7 +2,7 @@
 // dados temporário, e exercitam autenticação, permissões, validações,
 // auditoria e sincronização.
 //
-// Execução: node --experimental-sqlite servidor/testes/testes.mjs
+// Execução: node servidor/testes/testes.mjs
 
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
@@ -18,8 +18,10 @@ const PORTA = 3311 + Math.floor(Math.random() * 300);
 const BASE = `http://127.0.0.1:${PORTA}`;
 const SENHA_ADMIN = 'administrador123';
 
+const opcoes = process.allowedNodeEnvironmentFlags.has('--experimental-sqlite')
+  ? ['--experimental-sqlite'] : [];
 const processo = spawn(process.execPath,
-  ['--experimental-sqlite', join(raiz, 'servidor', 'src', 'principal.js')], {
+  [...opcoes, join(raiz, 'servidor', 'src', 'principal.js')], {
     env: { ...process.env, PORTA: String(PORTA), SENTINELA_DADOS: dados,
       SENTINELA_ADMIN_SENHA: SENHA_ADMIN, SENTINELA_ADMIN_EMAIL: 'admin@teste.adv.br' },
     stdio: ['ignore', 'pipe', 'pipe'],
