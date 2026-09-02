@@ -2,7 +2,7 @@
 // central de notificações e navegação inferior no celular.
 
 import { h, qs, qsa, esc, aviso, modal, delegar } from './ui.js';
-import { db, aoMudar } from '../core/store.js';
+import { db, aoMudar, aoSincronizar, modoAtual, enviarFila } from '../core/store.js';
 import { usuarioAtual, sair, pode } from '../core/auth.js';
 import { buscaGlobal, indicadores, sincronizarNotificacoes } from '../core/dominio.js';
 import { debounce, fmtDataHora } from '../core/util.js';
@@ -62,6 +62,7 @@ export function montarCasca() {
               autocomplete="off" aria-label="Busca global">
             <div class="busca__resultados oculto" id="busca-resultados"></div>
           </div>
+          <span id="sincronia" class="mini mudo" title="Situação da sincronização"></span>
           <button class="btn btn--fantasma" id="btn-notificacoes" title="Notificações">🔔<span id="contador-notif"></span></button>
           <button class="btn btn--fantasma" id="btn-tema" title="Alternar tema">◐</button>
           <button class="btn btn--fantasma" id="btn-perfil" title="Conta">👤</button>
@@ -80,8 +81,33 @@ export function montarCasca() {
   ligarAcoesTopo();
   aoMudar(() => { montarMenu(); atualizarContadorNotificacoes(); });
   atualizarContadorNotificacoes();
+  ligarIndicadorSincronia();
 
   return qs('#conteudo');
+}
+
+/** Mostra pendências de envio e falhas de comunicação com o servidor. */
+function ligarIndicadorSincronia() {
+  const el = qs('#sincronia');
+  if (!el) return;
+  if (modoAtual() !== 'servidor') { el.textContent = 'modo local'; return; }
+  el.textContent = '';
+  el.style.cursor = 'pointer';
+  el.addEventListener('click', () => enviarFila());
+  aoSincronizar(({ pendentes, erro }) => {
+    if (erro) {
+      el.textContent = `⚠ ${pendentes} pendente(s)`;
+      el.style.color = 'var(--c-fatal)';
+      el.title = `Falha ao sincronizar: ${erro}. Clique para tentar novamente.`;
+    } else if (pendentes) {
+      el.textContent = `↻ ${pendentes}`;
+      el.style.color = 'var(--c-proximo)';
+      el.title = `${pendentes} alteração(ões) aguardando envio.`;
+    } else {
+      el.textContent = '';
+      el.title = 'Tudo sincronizado com o servidor.';
+    }
+  });
 }
 
 export function montarMenu() {

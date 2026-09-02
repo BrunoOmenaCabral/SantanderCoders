@@ -1,42 +1,17 @@
 // Autenticação e controle de acesso.
 //
-// A senha nunca é gravada em texto puro: guarda-se o hash SHA-256 com sal por
-// usuário. Em produção este módulo deve delegar a um backend com política de
-// senha, expiração de sessão e segundo fator.
+// Com backend, tudo o que é sensível acontece no servidor: a senha é conferida
+// lá (scrypt com sal), e a sessão vem em cookie httpOnly que o JavaScript não
+// consegue ler. Sem backend, o modo local confere um hash SHA-256 com sal
+// guardado no próprio navegador — suficiente para demonstração, não para uso
+// compartilhado.
 
-import { db, sessao } from './store.js';
+import { db, sessao, modoAtual } from './store.js';
+import { api } from './api.js';
 import { norm, uid } from './util.js';
+import { PERFIS, temPermissao } from './perfis.js';
 
-export const PERFIS = {
-  admin: {
-    rotulo: 'Administrador',
-    descricao: 'Acesso integral, incluindo usuários, permissões e configurações.',
-    permissoes: ['*'],
-  },
-  advogado: {
-    rotulo: 'Advogado',
-    descricao: 'Processos, prazos, clientes, audiências, publicações e relatórios.',
-    permissoes: [
-      'dashboard:ver', 'agenda:ver', 'prazos:*', 'processos:*', 'clientes:*', 'tarefas:*',
-      'audiencias:*', 'publicacoes:*', 'documentos:*', 'relatorios:ver', 'comunicacoes:*',
-      'ia:usar', 'configuracoes:ver',
-    ],
-  },
-  assistente: {
-    rotulo: 'Assistente',
-    descricao: 'Tarefas, documentos, agenda e apoio ao cadastro, sem exclusões.',
-    permissoes: [
-      'dashboard:ver', 'agenda:ver', 'prazos:ver', 'prazos:criar', 'prazos:editar',
-      'processos:ver', 'clientes:ver', 'tarefas:*', 'audiencias:ver', 'audiencias:criar',
-      'publicacoes:ver', 'documentos:*', 'comunicacoes:ver', 'ia:usar',
-    ],
-  },
-  financeiro: {
-    rotulo: 'Financeiro',
-    descricao: 'Módulo financeiro, clientes e relatórios econômicos.',
-    permissoes: ['dashboard:ver', 'financeiro:*', 'clientes:ver', 'relatorios:ver'],
-  },
-};
+export { PERFIS };
 
 export async function hashSenha(senha, sal) {
   const dados = new TextEncoder().encode(`${sal}::${senha}`);
@@ -45,6 +20,12 @@ export async function hashSenha(senha, sal) {
 }
 
 export async function criarUsuario({ nome, email, senha, perfil = 'advogado', oab = '', permissoes = null }) {
+  if (modoAtual() === 'servidor') {
+    const { usuario } = await api.criarUsuario({ nome, email, senha, perfil, oab, permissoes });
+    const { sincronizarIncremental } = await import('./store.js');
+    await sincronizarIncremental();
+    return usuario;
+  }
   if (db.listar('usuarios').some((u) => norm(u.email) === norm(email))) {
     throw new Error('Já existe usuário com este e-mail.');
   }
@@ -57,12 +38,19 @@ export async function criarUsuario({ nome, email, senha, perfil = 'advogado', oa
 }
 
 export async function definirSenha(usuarioId, senha) {
+  if (modoAtual() === 'servidor') return api.definirSenha(usuarioId, senha);
   const sal = uid('sal');
   return db.atualizar('usuarios', usuarioId,
     { sal, senhaHash: await hashSenha(senha, sal) }, 'Senha alterada');
 }
 
 export async function autenticar(email, senha) {
+  if (modoAtual() === 'servidor') {
+    const { usuario } = await api.entrar(email, senha);
+    sessao.definir({ usuarioId: usuario.id, nome: usuario.nome, perfil: usuario.perfil,
+      em: new Date().toISOString() });
+    return usuario;
+  }
   const u = db.listar('usuarios').find((x) => norm(x.email) === norm(email));
   if (!u || u.ativo === false) throw new Error('Usuário não encontrado ou inativo.');
   const hash = await hashSenha(senha, u.sal);
@@ -74,19 +62,19 @@ export async function autenticar(email, senha) {
 
 export const usuarioAtual = () => {
   const s = sessao.obter();
-  return s ? db.obter('usuarios', s.usuarioId) : null;
+  if (!s) return null;
+  // Antes da primeira sincronização, a sessão já basta para liberar a interface.
+  return db.obter('usuarios', s.usuarioId)
+    || { id: s.usuarioId, nome: s.nome, perfil: s.perfil, email: s.email || '' };
 };
 
-export const sair = () => sessao.limpar();
-
-/** Verifica permissão no formato "modulo:acao". */
-export function pode(acao, usuario = usuarioAtual()) {
-  if (!usuario) return false;
-  const lista = usuario.permissoes?.length ? usuario.permissoes : PERFIS[usuario.perfil]?.permissoes || [];
-  if (lista.includes('*')) return true;
-  const [modulo] = acao.split(':');
-  return lista.includes(acao) || lista.includes(`${modulo}:*`);
+export function sair() {
+  if (modoAtual() === 'servidor') api.sair().catch(() => {});
+  sessao.limpar();
 }
+
+/** Verifica permissão no formato "modulo:acao" para o usuário da sessão. */
+export const pode = (acao, usuario = usuarioAtual()) => temPermissao(usuario, acao);
 
 export const exigir = (acao) => {
   if (!pode(acao)) throw new Error('Você não possui permissão para esta operação.');

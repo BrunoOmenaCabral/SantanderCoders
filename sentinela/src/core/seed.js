@@ -17,21 +17,35 @@ function numeroCNJ(sequencial, ano, segmento, tribunal, origem) {
   return `${nnnnnnn}${dv}${ano}${segmento}${String(tribunal).padStart(2, '0')}${String(origem).padStart(4, '0')}`;
 }
 
-export async function semear() {
-  if (db.listar('usuarios').length) return false;
+/**
+ * @param {object} opcoes
+ *  - forcar: semeia mesmo havendo usuários (usado para carregar a demonstração
+ *    sobre uma base de servidor já criada);
+ *  - criarUsuarios: no modo servidor os acessos são criados pelo administrador,
+ *    então a demonstração apenas reaproveita os usuários existentes.
+ */
+export async function semear({ forcar = false, criarUsuarios = true } = {}) {
+  const existentes = db.listar('usuarios');
+  if (!forcar && existentes.length) return false;
 
-  const admin = await criarUsuario({
-    nome: 'Bruno Omena Cabral', email: 'admin@escritorio.adv.br', senha: 'sentinela',
-    perfil: 'admin', oab: 'OAB/PE 00000',
-  });
-  const advogada = await criarUsuario({
-    nome: 'Maria Andrade', email: 'maria@escritorio.adv.br', senha: 'sentinela',
-    perfil: 'advogado', oab: 'OAB/PE 11111',
-  });
-  const assistente = await criarUsuario({
-    nome: 'Carlos Lima', email: 'carlos@escritorio.adv.br', senha: 'sentinela',
-    perfil: 'assistente',
-  });
+  let admin, advogada, assistente;
+  if (criarUsuarios) {
+    admin = await criarUsuario({
+      nome: 'Bruno Omena Cabral', email: 'admin@escritorio.adv.br', senha: 'sentinela',
+      perfil: 'admin', oab: 'OAB/PE 00000',
+    });
+    advogada = await criarUsuario({
+      nome: 'Maria Andrade', email: 'maria@escritorio.adv.br', senha: 'sentinela',
+      perfil: 'advogado', oab: 'OAB/PE 11111',
+    });
+    assistente = await criarUsuario({
+      nome: 'Carlos Lima', email: 'carlos@escritorio.adv.br', senha: 'sentinela',
+      perfil: 'assistente',
+    });
+  } else {
+    [admin, advogada = admin, assistente = admin] = existentes;
+    if (!admin) throw new Error('Cadastre ao menos um usuário antes de carregar a demonstração.');
+  }
 
   const clientes = [
     { nome: 'João Pereira da Silva', tipoPessoa: 'PF', documento: '12345678909',

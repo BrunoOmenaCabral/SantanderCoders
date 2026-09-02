@@ -9,10 +9,17 @@ tempo do processo · documentos · busca global · relatórios gerenciais · rel
 cliente · financeiro básico · comunicações com histórico · auditoria · lixeira · backup ·
 interface responsiva · estrutura pronta para publicações, WhatsApp e IA.
 
-## Próxima etapa — depende de backend
+## Entregue na segunda etapa
 
-1. **Servidor e banco de dados.** Substituir `core/store.js` por API HTTP, mover a
-   autorização para o servidor e habilitar acesso multiusuário simultâneo.
+**Backend próprio** em `servidor/`: API HTTP sem dependências, banco SQLite,
+autenticação com scrypt e sessão em cookie assinado, autorização por perfil no
+servidor, auditoria com autoria confiável, sincronização incremental entre os
+usuários e fila de envio resistente a queda de conexão.
+
+## Próxima etapa
+
+1. **Notificações fora da aba aberta.** Aplicativo instalável com push, para o
+   alerta de prazo chegar ao celular mesmo com o sistema fechado.
 2. **Captura automática de publicações.** Contratar provedor de monitoramento e
    preencher o ponto de extensão de `publicacoes.consultar`. A fila de conferência já
    está pronta para receber o volume.
@@ -29,6 +36,5 @@ interface responsiva · estrutura pronta para publicações, WhatsApp e IA.
 7. Consulta processual e integrações com PJe, e-SAJ, eproc, Projudi e diários oficiais.
 8. Assinatura eletrônica e certificado digital.
 9. Armazenamento de documentos em nuvem (Drive, OneDrive, S3).
-10. Aplicativo instalável (PWA) com notificações push e uso offline.
-11. Financeiro completo: contrato de honorários gerado, cobrança, conciliação e
+10. Financeiro completo: contrato de honorários gerado, cobrança, conciliação e
     relatório econômico por cliente.

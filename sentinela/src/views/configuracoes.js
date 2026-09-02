@@ -4,7 +4,7 @@
 import { h, qs, esc, delegar, aviso, confirmar } from '../ui/ui.js';
 import { modalFormulario } from '../ui/formulario.js';
 import { cabecalhoPagina } from '../ui/componentes.js';
-import { db, COLECOES } from '../core/store.js';
+import { db, COLECOES, modoAtual, sincronizarCompleto } from '../core/store.js';
 import { pode } from '../core/auth.js';
 import { fmtData, fmtDataHora, hoje } from '../core/util.js';
 import { baixarArquivo } from '../core/integracoes.js';
@@ -169,18 +169,37 @@ export function configuracoes() {
     backup: () => `<div class="grade grade--2">
       <section class="cartao"><div class="cartao__corpo">
         <h3>Backup</h3>
-        <p class="mini mudo">Exporte periodicamente. O arquivo contém todos os cadastros, prazos,
-          documentos anexados e o registro de auditoria.</p>
+        <p class="mini mudo">${modoAtual() === 'servidor'
+    ? 'A exportação gera uma cópia do que está no servidor, em JSON. A cópia oficial do '
+      + 'escritório é o arquivo do banco de dados no servidor, que deve ser incluído na '
+      + 'rotina de backup da máquina.'
+    : 'Exporte periodicamente. O arquivo contém todos os cadastros, prazos, documentos '
+      + 'anexados e o registro de auditoria.'}</p>
         <div class="linha">
           <button class="btn btn--primario" data-acao="exportar">Exportar backup</button>
-          <button class="btn" data-acao="importar">Importar backup</button>
+          ${modoAtual() === 'servidor' ? '' : '<button class="btn" data-acao="importar">Importar backup</button>'}
         </div>
-        <div class="mini mudo" style="margin-top:.5rem">Cópia diária automática: ativa.</div>
+        <div class="mini mudo" style="margin-top:.5rem">
+          ${modoAtual() === 'servidor' ? 'Conectado ao servidor. Os dados são compartilhados por toda a equipe.'
+    : 'Cópia diária automática no navegador: ativa.'}
+        </div>
+      </div></section>
+      <section class="cartao"><div class="cartao__corpo">
+        <h3>Base de demonstração</h3>
+        <p class="mini mudo">Cria clientes, processos, prazos, publicações e audiências de exemplo
+          para conhecer o sistema. Use apenas em ambiente de teste.</p>
+        <button class="btn" data-acao="demonstracao"
+          ${db.listar('clientes').length ? 'disabled title="Disponível apenas com a base vazia"' : ''}>
+          Carregar dados de demonstração</button>
       </div></section>
       <section class="cartao"><div class="cartao__corpo">
         <h3>Zona restrita</h3>
-        <p class="mini mudo">A limpeza remove todos os dados deste navegador. Exporte antes.</p>
-        <button class="btn btn--perigo" data-acao="zerar">Apagar todos os dados</button>
+        <p class="mini mudo">${modoAtual() === 'servidor'
+    ? 'A limpeza total da base do servidor é feita fora do sistema, com acesso ao arquivo do '
+      + 'banco de dados. Aqui só é possível excluir registro a registro, com trilha de auditoria.'
+    : 'A limpeza remove todos os dados deste navegador. Exporte antes.'}</p>
+        ${modoAtual() === 'servidor' ? ''
+    : '<button class="btn btn--perigo" data-acao="zerar">Apagar todos os dados</button>'}
       </div></section>
       <section class="cartao"><div class="cartao__corpo">
         <h3>Proteção de dados</h3>
@@ -282,6 +301,22 @@ export function configuracoes() {
       mensagem: 'Esta operação é irreversível e o registro não poderá ser recuperado. Confirma?',
       rotuloOk: 'Excluir definitivamente', perigo: true })) return;
     db.removerDefinitivo(colecao, id); desenhar(); aviso('Registro removido definitivamente.', 'atencao');
+  });
+
+  delegar(tela, 'click', '[data-acao="demonstracao"]', async (_e, el) => {
+    if (!await confirmar({ titulo: 'Carregar dados de demonstração',
+      mensagem: 'Serão criados clientes, processos, prazos, tarefas, audiências e publicações '
+        + 'de exemplo. Use apenas em ambiente de teste. Confirma?' })) return;
+    el.disabled = true;
+    const { semear } = await import('../core/seed.js');
+    await semear({ forcar: true, criarUsuarios: modoAtual() !== 'servidor' });
+    if (modoAtual() === 'servidor') {
+      const { enviarFila } = await import('../core/store.js');
+      await enviarFila();
+      await sincronizarCompleto();
+    }
+    aviso('Base de demonstração carregada.', 'ok');
+    desenhar();
   });
 
   delegar(tela, 'click', '[data-acao="exportar"]', () => {

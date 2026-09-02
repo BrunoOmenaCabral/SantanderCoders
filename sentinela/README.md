@@ -8,16 +8,29 @@ etapa de build. Roda em qualquer navegador moderno, no computador e no celular.
 
 ## Como executar
 
+### Com backend, para uso real
+
+```bash
+cd servidor
+npm start
+# abra http://localhost:3000
+```
+
+Os dados passam a ficar no servidor, compartilhados por toda a equipe, com
+usuários, permissões e auditoria de verdade. No primeiro início o terminal
+mostra o acesso do administrador. Instruções completas, incluindo publicação
+com HTTPS e backup, em [`servidor/README.md`](../servidor/README.md).
+
+### Sem backend, para conhecer o sistema
+
 ```bash
 # a partir da raiz do repositório
 npx http-server -p 8080 .
 # abra http://localhost:8080/sentinela/
 ```
 
-Qualquer servidor estático serve. Abrir o arquivo direto pelo sistema de arquivos
-(`file://`) não funciona, porque módulos ES exigem origem HTTP.
-
-Acesso de demonstração, criado automaticamente no primeiro uso:
+Nesse modo tudo fica no armazenamento do próprio navegador, com base de
+demonstração criada automaticamente:
 
 | E-mail | Senha | Perfil |
 | --- | --- | --- |
@@ -25,14 +38,22 @@ Acesso de demonstração, criado automaticamente no primeiro uso:
 | maria@escritorio.adv.br | sentinela | Advogado |
 | carlos@escritorio.adv.br | sentinela | Assistente |
 
+A aplicação escolhe o modo sozinha: se houver servidor na origem em que ela foi
+aberta, ele é a fonte dos dados; se não houver, ela funciona localmente. Abrir o
+arquivo direto pelo sistema de arquivos (`file://`) não funciona, porque módulos
+ES exigem origem HTTP.
+
 ## Testes
 
 ```bash
-node sentinela/testes/testes.mjs
+node sentinela/testes/testes.mjs                      # 37 verificações do núcleo
+node --experimental-sqlite servidor/testes/testes.mjs # 28 verificações da API
 ```
 
-Cobrem validação do número CNJ, calendário forense, contagem de prazos, leitura de
-publicações, prevenção de conflitos, auditoria e relatório do cliente.
+O primeiro cobre validação do número CNJ, calendário forense, contagem de prazos,
+leitura de publicações, prevenção de conflitos, auditoria e relatório do cliente.
+O segundo cobre autenticação, permissões por perfil, validações de gravação,
+auditoria e sincronização.
 
 ## O que já funciona
 
@@ -57,6 +78,8 @@ publicações, prevenção de conflitos, auditoria e relatório do cliente.
 - **Tarefas, audiências, documentos, financeiro, comunicações, relatórios gerenciais,
   busca global, controle de usuários, auditoria, lixeira e backup.**
 - **Interface responsiva** com navegação inferior no celular e tema claro/escuro.
+- **Uso por equipe** quando o backend está no ar: cada pessoa com seu acesso, dados
+  compartilhados, permissões aplicadas no servidor e auditoria com autoria confiável.
 
 ## O que depende de contratação externa
 
@@ -87,7 +110,9 @@ sentinela/
 │   │   ├── util.js             datas, formatação, validação do CNJ
 │   │   ├── feriados.js         calendário forense
 │   │   ├── calculo-prazo.js    motor de contagem com memória de cálculo
-│   │   ├── store.js            persistência, auditoria, exclusão lógica, backup
+│   │   ├── store.js            persistência local ou sincronizada, com fila de envio
+│   │   ├── api.js              cliente da API do servidor
+│   │   ├── perfis.js           perfis e permissões, compartilhados com o servidor
 │   │   ├── dominio.js          consultas compostas e prevenção de conflitos
 │   │   ├── auth.js             usuários, perfis e permissões
 │   │   ├── ia.js               leitura de publicações e relatório do cliente
@@ -99,12 +124,21 @@ sentinela/
 └── docs/
 ```
 
+O backend fica em [`servidor/`](../servidor), na raiz do repositório.
+
 ## Persistência
 
-Esta versão grava no `localStorage` do navegador, com cópia diária automática e
-exportação/importação de backup em Configurações. Toda a aplicação conversa apenas com
-a interface `db` de `src/core/store.js`: trocar por uma API HTTP exige reescrever
-somente esse arquivo. Consulte `docs/ARQUITETURA.md`.
+Com backend, os dados ficam em SQLite no servidor. A interface mantém uma cópia de
+trabalho em memória para responder de imediato, envia cada gravação como mutação e
+guarda em fila o que não conseguir enviar, reenviando quando a conexão volta. A cada
+30 segundos busca o que mudou, de modo que o trabalho de um usuário aparece para os
+demais.
+
+Sem backend, tudo fica no `localStorage`, com cópia diária automática e
+exportação de backup em Configurações.
+
+Nos dois casos a aplicação conversa apenas com a interface `db` de
+`src/core/store.js`. Consulte `docs/ARQUITETURA.md`.
 
 ## Princípios de projeto
 

@@ -1,6 +1,10 @@
 // Ponto de entrada da aplicação.
 
-import { db, sessao } from './core/store.js';
+import {
+  db, sessao, ativarModoServidor, sincronizarCompleto, sincronizarIncremental,
+  enviarFila, modoAtual,
+} from './core/store.js';
+import { api } from './core/api.js';
 import { semear } from './core/seed.js';
 import { usuarioAtual, pode } from './core/auth.js';
 import { sincronizarNotificacoes } from './core/dominio.js';
@@ -61,8 +65,25 @@ function registrarTelas() {
 
 async function iniciar() {
   aplicarTema();
-  await semear();
 
+  // Havendo backend nesta origem, ele é a fonte dos dados. Sem backend, o
+  // sistema segue funcionando com a base do próprio navegador.
+  if (await api.disponivel()) {
+    ativarModoServidor();
+    try {
+      const { usuario } = await api.sessao();
+      sessao.definir({ usuarioId: usuario.id, nome: usuario.nome, perfil: usuario.perfil,
+        em: new Date().toISOString() });
+      await sincronizarCompleto();
+      abrirAplicacao();
+    } catch {
+      sessao.limpar();
+      telaLogin(async () => { await sincronizarCompleto(); abrirAplicacao(); });
+    }
+    return;
+  }
+
+  await semear();
   if (!sessao.obter() || !usuarioAtual()) {
     telaLogin(abrirAplicacao);
     return;
@@ -79,6 +100,20 @@ function abrirAplicacao() {
   rotinaDiaria();
   // Reavalia alertas periodicamente enquanto a aba permanece aberta.
   setInterval(() => { sincronizarNotificacoes(); atualizarContadorNotificacoes(); }, 5 * 60 * 1000);
+
+  if (modoAtual() === 'servidor') ligarSincronizacao();
+}
+
+/** Mantém a cópia local alinhada ao servidor e reenvia o que ficou pendente. */
+function ligarSincronizacao() {
+  const puxar = async () => {
+    const { novidades } = await sincronizarIncremental();
+    if (novidades) { atualizarNavegacao(); atualizarContadorNotificacoes(); }
+  };
+  setInterval(puxar, 30 * 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) puxar(); });
+  window.addEventListener('online', () => { enviarFila().then(puxar); });
+  window.addEventListener('beforeunload', () => { enviarFila(); });
 }
 
 async function rotinaDiaria() {

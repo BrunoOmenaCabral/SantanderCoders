@@ -58,20 +58,41 @@ Cada tela oferece o caminho de volta: do prazo para o processo, do processo para
 publicação que o originou, do cliente para todos os processos, da publicação para o
 prazo confirmado.
 
-## Substituição da persistência
+## Persistência e sincronização
 
-`core/store.js` expõe `db.listar`, `db.obter`, `db.inserir`, `db.atualizar`,
-`db.remover`, `db.restaurar`, `db.removerDefinitivo`, `db.config`, `db.salvarConfig`,
-`db.exportar` e `db.importar`. Para migrar a um backend:
+`core/store.js` expõe uma interface única — `db.listar`, `db.obter`, `db.inserir`,
+`db.atualizar`, `db.remover`, `db.restaurar`, `db.removerDefinitivo`, `db.config`,
+`db.salvarConfig` — e opera em dois modos, decididos na abertura do sistema pela
+resposta de `/api/saude`:
 
-1. Reescrever apenas essas funções sobre `fetch`.
-2. Tornar as chamadas assíncronas e ajustar os pontos de uso (as views já são
-   preparadas para funções assíncronas nos formulários).
-3. Mover `core/auth.js` para autenticação no servidor, mantendo `pode()` no cliente
-   apenas como controle de exibição — a autorização real passa a ser do backend.
+**Modo servidor.** O backend em `servidor/` é a fonte dos dados. A interface carrega
+o estado completo ao entrar, responde às leituras a partir de uma cópia em memória e
+transforma cada gravação em mutação enviada ao servidor. A fila fica no navegador
+enquanto não é aceita, sobrevive à queda de conexão e é reenviada automaticamente. A
+cada 30 segundos, ao voltar o foco da aba e ao retornar a rede, a interface pede
+apenas o que mudou desde a última conversa.
 
-O registro de auditoria e a exclusão lógica devem ser preservados no servidor: são
-requisitos de governança do escritório, não detalhes de implementação.
+**Modo local.** Sem backend, tudo fica no armazenamento do navegador. Serve para
+demonstração e para contingência.
+
+Duas coleções nunca sobem para o servidor: `auditoria`, que é gerada por ele e vem
+pronta, e `notificacoes`, que são o alerta pessoal de cada usuário no dispositivo dele.
+
+O que o servidor não delega ao navegador:
+
+- conferência de senha e emissão da sessão;
+- autorização de cada gravação, por perfil e permissão individual;
+- unicidade do número CNJ e demais validações de integridade;
+- campos de controle (`criadoPor`, `atualizadoEm`, `excluidoEm`);
+- registro de auditoria com autoria confiável.
+
+A permissão é avaliada nos dois lados a partir do mesmo arquivo,
+`core/perfis.js`: no navegador para decidir o que exibir, no servidor para decidir
+o que autorizar.
+
+Limite conhecido: a resolução de conflito é por registro, com prevalência da última
+gravação. Duas pessoas editando o mesmo prazo ao mesmo tempo terminam com o valor de
+quem gravou por último, e ambas as gravações permanecem na auditoria.
 
 ## Pontos de extensão
 
