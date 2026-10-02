@@ -9,12 +9,10 @@ Cada envio à branch `main` publica o site no GitHub Pages pelo workflow
 `.github/workflows/pages.yml`. Na primeira vez, é preciso ativar o Pages em
 **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-## Antes de publicar
+## Pendências
 
 | O que | Onde |
 | --- | --- |
-| Instagram (WhatsApp e e-mail já configurados) | bloco `CONFIG` no início de `script.js` |
-| Número da OAB | `index.html`, buscar por `[INSERIR NÚMERO]` (seção Sobre e rodapé) |
 | Logomarca oficial | substituir `assets/logo.svg` (mesmo nome) |
 | Fotografia profissional | salvar em `assets/` e trocar o `src` da imagem na seção Sobre |
 
@@ -28,3 +26,5 @@ O botão flutuante acompanha a área visível na tela.
 - `index.html`: conteúdo, ícones (SVG inline), SEO e textos legais
 - `styles.css`: identidade visual e responsividade
 - `script.js`: links do WhatsApp, accordions, menu móvel e animações de entrada
+
+Contatos (WhatsApp, e-mail e Instagram) ficam no bloco `CONFIG` de `script.js`.

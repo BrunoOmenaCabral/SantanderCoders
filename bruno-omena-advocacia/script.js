@@ -5,7 +5,7 @@
 const CONFIG = {
   whatsapp: '5581999157026',
   email: 'brunoomena.adv@gmail.com',
-  instagram: '[INSERIR USUÁRIO DO INSTAGRAM]',
+  instagram: '@brunoomena',
 };
 
 const MENSAGENS = {
