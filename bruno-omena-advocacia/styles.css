@@ -124,7 +124,7 @@ h3 { font-weight: 500; font-size: 1rem; line-height: 1.4; }
 .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 
 .brand { display: flex; align-items: center; }
-.brand img { width: auto; height: 40px; }
+.brand img { width: auto; height: 42px; }
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav ul { display: flex; gap: 1.75rem; }
@@ -148,7 +148,7 @@ h3 { font-weight: 500; font-size: 1rem; line-height: 1.4; }
   gap: clamp(3rem, 7vw, 6.5rem); align-items: center;
 }
 .hero__inner { display: flex; flex-direction: column; align-items: flex-start; }
-.hero__logo { width: 230px; height: auto; margin: 0 0 2.75rem -6px; }
+.hero__logo { width: 320px; height: auto; margin: 0 0 3rem -8px; }
 .hero__title {
   font-family: var(--serif);
   font-weight: 500;
@@ -387,7 +387,7 @@ h3 { font-weight: 500; font-size: 1rem; line-height: 1.4; }
   .topic__toggle { padding: 1.15rem 1.25rem; font-size: .975rem; }
   .topic .topic__panel p { padding: 0 1.25rem; }
   .topic .topic__panel .link { margin: .9rem 1.25rem 1.25rem; }
-  .hero__logo { width: 200px; margin-bottom: 2.25rem; }
+  .hero__logo { width: 250px; margin-bottom: 2.5rem; }
   .hero__inner { min-height: calc(100svh - var(--header-h) - 144px); justify-content: center; }
   .about { display: block; max-width: 360px; }
   .about__text { padding-top: 1.75rem; }
