@@ -11,8 +11,8 @@ Cada envio à branch `main` publica o site no GitHub Pages pelo workflow
 
 ## Imagens
 
-- `assets/logo.png`: logomarca (cabeçalho)
-- `assets/simbolo.png`: símbolo "B" (abertura da página e ícone da aba)
+- `assets/logo.png`: logomarca (cabeçalho e abertura da página)
+- `assets/simbolo.png`: símbolo "B" (ícone da aba do navegador)
 - `assets/foto-bruno-omena.jpg`: fotografia da seção Sobre, recortada em 4:5
 
 Contatos (WhatsApp, e-mail e Instagram) ficam no bloco `CONFIG` de `script.js`.

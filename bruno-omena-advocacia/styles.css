@@ -145,7 +145,7 @@ h3 { font-weight: 500; font-size: 1rem; line-height: 1.4; }
   text-align: center;
 }
 .hero__inner { display: flex; flex-direction: column; align-items: center; }
-.hero__logo { width: 64px; height: 64px; margin-bottom: 2.25rem; }
+.hero__logo { width: 248px; height: auto; margin-bottom: 2.75rem; }
 .hero__title {
   font-family: var(--serif);
   font-weight: 500;
@@ -386,7 +386,7 @@ h3 { font-weight: 500; font-size: 1rem; line-height: 1.4; }
   .topic__toggle { padding: 1.15rem 1.25rem; font-size: .975rem; }
   .topic .topic__panel p { padding: 0 1.25rem; }
   .topic .topic__panel .link { margin: .9rem 1.25rem 1.25rem; }
-  .hero__logo { width: 56px; height: 56px; margin-bottom: 1.75rem; }
+  .hero__logo { width: 210px; margin-bottom: 2.25rem; }
   .hero__title { letter-spacing: .04em; }
   .hero .btn, .closing .btn { width: 100%; max-width: 360px; }
   .section__cta .btn { width: 100%; }
