@@ -30,8 +30,7 @@ function configurarLinks() {
   }
 
   document.querySelectorAll('[data-wa]').forEach((link) => {
-    const tema = link.closest('.topic')?.querySelector('.topic__toggle span')?.textContent.trim();
-    link.href = linkWhatsApp(link.dataset.wa, tema);
+    link.href = linkWhatsApp(link.dataset.wa);
     link.target = '_blank';
     link.rel = 'noopener';
   });
@@ -62,7 +61,7 @@ function acompanharArea() {
   secoes.forEach((secao) => observer.observe(secao));
 }
 
-/* Cards e perguntas: um item aberto por grupo, com expansão suave. */
+/* Perguntas frequentes: uma resposta aberta por vez, com expansão suave. */
 function configurarAccordions() {
   document.querySelectorAll('[data-accordion]').forEach((grupo, g) => {
     const itens = [...grupo.children];
@@ -92,6 +91,72 @@ function configurarAccordions() {
           painel.inert = false;
         }
       });
+    });
+  });
+}
+
+/* Temas: a grade mostra só ícone e título. O clique abre o detalhe abaixo da
+   grade e adapta a mensagem do botão da área ao tema escolhido. */
+function configurarTemas() {
+  document.querySelectorAll('[data-topics]').forEach((bloco) => {
+    const secao = bloco.closest('section');
+    const area = secao.dataset.area;
+    const botoes = [...bloco.querySelectorAll('.tile__btn')];
+    const detalhe = bloco.querySelector('.detail');
+    const cartao = detalhe.querySelector('.detail__card');
+    const icone = detalhe.querySelector('[data-detail-icon]');
+    const titulo = detalhe.querySelector('[data-detail-title]');
+    const texto = detalhe.querySelector('[data-detail-text]');
+    const cta = secao.querySelector('[data-wa-area-cta]');
+    let atual = null;
+
+    detalhe.inert = true;
+
+    const preencher = (botao) => {
+      const tile = botao.closest('.tile');
+      icone.innerHTML = tile.querySelector('.tile__icon').innerHTML;
+      titulo.textContent = tile.querySelector('.tile__title').textContent;
+      texto.textContent = tile.querySelector('.tile__desc').textContent;
+      cta.href = linkWhatsApp(area, titulo.textContent);
+    };
+
+    const fechar = () => {
+      bloco.classList.remove('is-open');
+      botoes.forEach((b) => b.setAttribute('aria-expanded', 'false'));
+      detalhe.inert = true;
+      cta.href = linkWhatsApp(area);
+      atual = null;
+    };
+
+    botoes.forEach((botao) => {
+      botao.addEventListener('click', () => {
+        if (atual === botao) { fechar(); return; }
+
+        const trocando = atual !== null;
+        botoes.forEach((b) => b.setAttribute('aria-expanded', String(b === botao)));
+        atual = botao;
+        detalhe.inert = false;
+
+        if (trocando) {
+          cartao.classList.add('is-changing');
+          setTimeout(() => { preencher(botao); cartao.classList.remove('is-changing'); }, 180);
+        } else {
+          preencher(botao);
+          bloco.classList.add('is-open');
+        }
+
+        // No celular, garante que o detalhe apareça na tela
+        setTimeout(() => {
+          const r = detalhe.getBoundingClientRect();
+          if (r.bottom > window.innerHeight) detalhe.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 480);
+      });
+    });
+
+    detalhe.querySelector('.detail__close').addEventListener('click', () => {
+      const anterior = atual;
+      fechar();
+      anterior?.focus();
     });
   });
 }
@@ -151,6 +216,7 @@ function configurarDialogos() {
 configurarLinks();
 acompanharArea();
 configurarAccordions();
+configurarTemas();
 configurarMenu();
 configurarEntradas();
 configurarDialogos();

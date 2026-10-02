@@ -111,30 +111,16 @@
 
   <main id="conteudo">
 
-    <!-- 2. Hero, com a apresentação do profissional ao lado -->
+    <!-- 2. Hero -->
     <section class="hero" aria-labelledby="hero-titulo">
-      <div class="container hero__grid">
-        <div class="hero__inner">
-          <img class="hero__logo" src="assets/logo.png" alt="Bruno Omena Advocacia" width="993" height="317">
-          <h1 id="hero-titulo" class="hero__title">Direito da Saúde<br> e Direito Médico</h1>
-          <p class="hero__lead">Atuação jurídica voltada à proteção de pacientes, profissionais e empresas da área da saúde.</p>
-          <a class="btn" href="https://wa.me/" data-wa="geral">
-            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
-            Conversar com um advogado
-          </a>
-        </div>
-
-        <aside class="about" id="sobre" aria-labelledby="sobre-titulo">
-          <figure class="about__photo">
-            <img src="assets/foto-bruno-omena.jpg" alt="Bruno Omena, advogado" width="720" height="900">
-          </figure>
-          <div class="about__text">
-            <h2 id="sobre-titulo" class="eyebrow eyebrow--title">Sobre o profissional</h2>
-            <p class="about__name">Bruno Omena</p>
-            <p class="about__role">Advogado Cível <span aria-hidden="true">·</span> OAB/PE nº 53.699</p>
-            <p>Atuação jurídica nas áreas de Direito da Saúde e Direito Médico, com experiência na defesa de direitos de pacientes e na orientação e defesa de profissionais da área da saúde.</p>
-          </div>
-        </aside>
+      <div class="container hero__inner">
+        <img class="hero__logo" src="assets/logo.png" alt="Bruno Omena Advocacia" width="993" height="317">
+        <h1 id="hero-titulo" class="hero__title">Direito da Saúde<br> e Direito Médico</h1>
+        <p class="hero__lead">Atuação jurídica voltada à proteção de pacientes, profissionais e empresas da área da saúde.</p>
+        <a class="btn" href="https://wa.me/" data-wa="geral">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+          Conversar com um advogado
+        </a>
       </div>
     </section>
 
@@ -148,13 +134,13 @@
 
         <div class="paths">
           <a class="path reveal" href="#saude">
-            <svg class="icon icon--lg" aria-hidden="true"><use href="#i-saude"/></svg>
+            <span class="path__icon"><svg class="icon" aria-hidden="true"><use href="#i-saude"/></svg></span>
             <h3>Direito da Saúde</h3>
             <p>Para pacientes e beneficiários de planos de saúde.</p>
             <span class="link">Conhecer as situações <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></span>
           </a>
           <a class="path reveal" href="#medico">
-            <svg class="icon icon--lg" aria-hidden="true"><use href="#i-medico"/></svg>
+            <span class="path__icon"><svg class="icon" aria-hidden="true"><use href="#i-medico"/></svg></span>
             <h3>Direito Médico</h3>
             <p>Para médicos e profissionais da área da saúde.</p>
             <span class="link">Conhecer as situações <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></span>
@@ -172,91 +158,84 @@
           <p>Atuação jurídica em questões relacionadas a planos de saúde, acesso a tratamentos e proteção dos direitos do paciente.</p>
         </header>
 
-        <ul class="topics reveal" data-accordion data-wa-area="saude">
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-empresa"/></svg>
-              <span>Planos coletivos empresariais</span><i class="plus" aria-hidden="true"></i>
+        <div class="topics reveal" data-topics>
+          <p class="topics__hint">Selecione um tema para saber mais.</p>
+          <ul class="tiles">
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-empresa"/></svg></span>
+              <span class="tile__title">Planos coletivos empresariais</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Análise de contratos empresariais que apresentam características de contratação familiar ou que possam exigir avaliação quanto à sua estrutura e aos reajustes aplicados.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">O contrato foi feito por meio de um CNPJ, mas os beneficiários são apenas familiares? A estrutura da contratação e os reajustes aplicados podem ser analisados juridicamente.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-adesao"/></svg>
-              <span>Planos coletivos por adesão</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-adesao"/></svg></span>
+              <span class="tile__title">Planos coletivos por adesão</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Análise da contratação vinculada a associações ou entidades de classe, especialmente quanto à transparência das informações e aos reajustes aplicados.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Análise da contratação vinculada a associações ou entidades de classe, especialmente quanto à transparência das informações e aos reajustes aplicados.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-grafico"/></svg>
-              <span>Reajustes de planos de saúde</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-grafico"/></svg></span>
+              <span class="tile__title">Reajustes</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Análise da evolução das mensalidades, da modalidade contratual e dos critérios utilizados para os reajustes.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Análise da evolução das mensalidades, da modalidade contratual e dos critérios utilizados para os reajustes.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-negativa"/></svg>
-              <span>Negativa de cobertura</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-negativa"/></svg></span>
+              <span class="tile__title">Negativa de cobertura</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Atuação em situações envolvendo negativa de procedimentos, exames, cirurgias, medicamentos ou tratamentos.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Atuação em situações envolvendo negativa de procedimentos, exames, cirurgias, medicamentos ou tratamentos.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-capsula"/></svg>
-              <span>Medicamentos e tratamentos</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-capsula"/></svg></span>
+              <span class="tile__title">Medicamentos e tratamentos</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Questões relacionadas à negativa ou dificuldade de acesso a medicamentos, terapias e tratamentos prescritos.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Questões relacionadas à negativa ou dificuldade de acesso a medicamentos, terapias e tratamentos prescritos.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-hospital"/></svg>
-              <span>Cirurgias e procedimentos</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-hospital"/></svg></span>
+              <span class="tile__title">Cirurgias e procedimentos</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Orientação jurídica diante de negativas ou dificuldades na autorização de procedimentos indicados ao paciente.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Orientação jurídica diante de negativas ou dificuldades na autorização de procedimentos indicados ao paciente.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-cancelamento"/></svg>
-              <span>Cancelamento ou rescisão</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-cancelamento"/></svg></span>
+              <span class="tile__title">Cancelamento</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Análise de cancelamentos e rescisões contratuais, inclusive em situações que possam comprometer a continuidade da assistência.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Análise de cancelamentos e rescisões contratuais, inclusive em situações que possam comprometer a continuidade da assistência.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-idade"/></svg>
-              <span>Reajustes por faixa etária</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="saude-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-idade"/></svg></span>
+              <span class="tile__title">Faixa etária</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Análise jurídica dos reajustes aplicados em razão da mudança de faixa etária, considerando as circunstâncias específicas do contrato.</p>
-              <a class="link" href="https://wa.me/" data-wa="saude">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Análise jurídica dos reajustes aplicados em razão da mudança de faixa etária, considerando as circunstâncias específicas do contrato.</p>
           </li>
-        </ul>
+          </ul>
+
+
+          <div class="detail" id="saude-detalhe" role="region" aria-live="polite" aria-label="Detalhes do tema">
+            <div class="detail__inner">
+              <div class="detail__card">
+                <span class="tile__icon" data-detail-icon></span>
+                <div>
+                  <p class="detail__title" data-detail-title></p>
+                  <p class="detail__text" data-detail-text></p>
+                </div>
+                <button class="detail__close" type="button" aria-label="Fechar detalhes"><i class="plus" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="section__cta reveal">
-          <a class="btn btn--outline" href="https://wa.me/" data-wa="saude">Conversar sobre meu caso</a>
+          <a class="btn btn--outline" href="https://wa.me/" data-wa="saude" data-wa-area-cta>Conversar sobre Direito da Saúde</a>
         </div>
       </div>
     </section>
@@ -270,97 +249,105 @@
           <p>Atuação jurídica preventiva e contenciosa voltada à proteção da atividade profissional médica.</p>
         </header>
 
-        <ul class="topics reveal" data-accordion data-wa-area="medico">
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-instituicao"/></svg>
-              <span>Defesa perante o CRM</span><i class="plus" aria-hidden="true"></i>
+        <div class="topics reveal" data-topics>
+          <p class="topics__hint">Selecione um tema para saber mais.</p>
+          <ul class="tiles">
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-instituicao"/></svg></span>
+              <span class="tile__title">Defesa perante o CRM</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Atuação na defesa de médicos em sindicâncias e processos ético-profissionais perante o Conselho Regional de Medicina.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Atuação na defesa de médicos em sindicâncias e processos ético-profissionais perante o Conselho Regional de Medicina.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-lupa"/></svg>
-              <span>Sindicâncias médicas</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-lupa"/></svg></span>
+              <span class="tile__title">Sindicâncias médicas</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Orientação e defesa técnica desde as fases iniciais de apuração de possíveis infrações éticas.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Orientação e defesa técnica desde as fases iniciais de apuração de possíveis infrações éticas.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-documento"/></svg>
-              <span>Processos ético-profissionais</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-documento"/></svg></span>
+              <span class="tile__title">Processos ético-profissionais</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Atuação na defesa dos interesses do médico em procedimentos perante os órgãos de fiscalização profissional.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Atuação na defesa dos interesses do médico em procedimentos perante os órgãos de fiscalização profissional.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-celular"/></svg>
-              <span>Publicidade médica</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-celular"/></svg></span>
+              <span class="tile__title">Publicidade médica</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Orientação preventiva sobre divulgação de serviços médicos, redes sociais e comunicação profissional conforme as normas éticas aplicáveis.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Orientação preventiva sobre divulgação de serviços médicos, redes sociais e comunicação profissional conforme as normas éticas aplicáveis.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-escudo-check"/></svg>
-              <span>Compliance médico</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-escudo-check"/></svg></span>
+              <span class="tile__title">Compliance médico</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Estruturação de práticas e procedimentos destinados à prevenção de riscos jurídicos e éticos na atividade médica.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Estruturação de práticas e procedimentos destinados à prevenção de riscos jurídicos e éticos na atividade médica.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-contrato"/></svg>
-              <span>Contratos e documentos</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-contrato"/></svg></span>
+              <span class="tile__title">Contratos e documentos</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Elaboração e revisão de instrumentos jurídicos relacionados à atividade profissional e à prestação de serviços de saúde.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Elaboração e revisão de instrumentos jurídicos relacionados à atividade profissional e à prestação de serviços de saúde.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-escudo"/></svg>
-              <span>Prevenção de litígios</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-escudo"/></svg></span>
+              <span class="tile__title">Prevenção de litígios</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Orientação preventiva sobre documentação, procedimentos internos, relação médico-paciente e gestão de riscos jurídicos.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Orientação preventiva sobre documentação, procedimentos internos, relação médico-paciente e gestão de riscos jurídicos.</p>
           </li>
-          <li class="topic">
-            <h3><button class="topic__toggle" type="button" aria-expanded="false">
-              <svg class="icon icon--md" aria-hidden="true"><use href="#i-balanca"/></svg>
-              <span>Responsabilidade civil médica</span><i class="plus" aria-hidden="true"></i>
+          <li class="tile">
+            <h3><button class="tile__btn" type="button" aria-expanded="false" aria-controls="medico-detalhe">
+              <span class="tile__icon"><svg class="icon" aria-hidden="true"><use href="#i-balanca"/></svg></span>
+              <span class="tile__title">Responsabilidade civil médica</span>
             </button></h3>
-            <div class="topic__panel"><div>
-              <p>Atuação na defesa de médicos em demandas relacionadas à alegação de erro médico e responsabilidade civil.</p>
-              <a class="link" href="https://wa.me/" data-wa="medico">Conversar sobre este tema <svg class="icon" aria-hidden="true"><use href="#i-seta"/></svg></a>
-            </div></div>
+            <p class="tile__desc">Atuação na defesa de médicos em demandas relacionadas à alegação de erro médico e responsabilidade civil.</p>
           </li>
-        </ul>
+          </ul>
+
+
+          <div class="detail" id="medico-detalhe" role="region" aria-live="polite" aria-label="Detalhes do tema">
+            <div class="detail__inner">
+              <div class="detail__card">
+                <span class="tile__icon" data-detail-icon></span>
+                <div>
+                  <p class="detail__title" data-detail-title></p>
+                  <p class="detail__text" data-detail-text></p>
+                </div>
+                <button class="detail__close" type="button" aria-label="Fechar detalhes"><i class="plus" aria-hidden="true"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="section__cta reveal">
-          <a class="btn btn--outline" href="https://wa.me/" data-wa="medico">Conversar sobre meu caso</a>
+          <a class="btn btn--outline" href="https://wa.me/" data-wa="medico" data-wa-area-cta>Conversar sobre Direito Médico</a>
         </div>
       </div>
     </section>
 
-    <!-- 6. Como funciona -->
-    <section class="section" aria-labelledby="funciona-titulo">
+    <!-- 6. Sobre o profissional -->
+    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
+      <div class="container about">
+        <figure class="about__photo reveal">
+          <img src="assets/foto-bruno-omena.jpg" alt="Bruno Omena, advogado" width="720" height="900" loading="lazy">
+        </figure>
+        <div class="about__text reveal">
+          <h2 id="sobre-titulo" class="eyebrow eyebrow--title">Sobre o profissional</h2>
+          <p class="about__name">Bruno Omena</p>
+          <p class="about__role">Advogado Cível <span aria-hidden="true">·</span> OAB/PE nº 53.699</p>
+          <p>Atuação jurídica nas áreas de Direito da Saúde e Direito Médico, com experiência na defesa de direitos de pacientes e na orientação e defesa de profissionais da área da saúde.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Como funciona -->
+    <section class="section section--off" aria-labelledby="funciona-titulo">
       <div class="container">
         <header class="section__head reveal">
           <h2 id="funciona-titulo">Como funciona o atendimento</h2>
@@ -368,19 +355,19 @@
 
         <ol class="steps">
           <li class="step reveal">
-            <svg class="icon icon--md" aria-hidden="true"><use href="#i-conversa"/></svg>
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-conversa"/></svg></span>
             <span class="step__number">01</span>
             <h3>Entre em contato</h3>
             <p>Conte brevemente sua situação pelo WhatsApp.</p>
           </li>
           <li class="step reveal">
-            <svg class="icon icon--md" aria-hidden="true"><use href="#i-lupa"/></svg>
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-lupa"/></svg></span>
             <span class="step__number">02</span>
             <h3>Análise do caso</h3>
             <p>A situação e a documentação apresentada são avaliadas individualmente.</p>
           </li>
           <li class="step reveal">
-            <svg class="icon icon--md" aria-hidden="true"><use href="#i-bussola"/></svg>
+            <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-bussola"/></svg></span>
             <span class="step__number">03</span>
             <h3>Orientação jurídica</h3>
             <p>São apresentadas as possibilidades jurídicas aplicáveis ao caso concreto.</p>
@@ -389,8 +376,8 @@
       </div>
     </section>
 
-    <!-- 7. FAQ -->
-    <section class="section section--off" aria-labelledby="faq-titulo">
+    <!-- 8. FAQ -->
+    <section class="section" aria-labelledby="faq-titulo">
       <div class="container container--narrow">
         <header class="section__head reveal">
           <h2 id="faq-titulo">Perguntas frequentes</h2>
@@ -402,15 +389,7 @@
               <span>O atendimento pode ser realizado online?</span><i class="plus" aria-hidden="true"></i>
             </button></h3>
             <div class="topic__panel"><div>
-              <p>Sim. Todo o atendimento pode ser realizado de forma online, por WhatsApp, videochamada e e-mail. Também há atendimento presencial em Recife/PE, mediante agendamento.</p>
-            </div></div>
-          </li>
-          <li class="faq__item">
-            <h3><button class="faq__toggle" type="button" aria-expanded="false">
-              <span>Quais documentos devo apresentar para uma primeira análise?</span><i class="plus" aria-hidden="true"></i>
-            </button></h3>
-            <div class="topic__panel"><div>
-              <p>Depende da situação. Em questões com planos de saúde, costumam ser úteis o contrato ou a carteirinha do plano, os comprovantes das mensalidades, o relatório ou a prescrição médica e eventual negativa da operadora. Para médicos, a notificação ou o ofício recebido e os documentos relacionados ao atendimento. Não é necessário reunir tudo antes do primeiro contato: a análise pode começar com o que estiver disponível.</p>
+              <p>Sim. O atendimento pode ser feito integralmente online. Também há atendimento presencial em Recife/PE, mediante agendamento.</p>
             </div></div>
           </li>
           <li class="faq__item">
@@ -418,7 +397,15 @@
               <span>Vocês atendem pessoas de outros estados?</span><i class="plus" aria-hidden="true"></i>
             </button></h3>
             <div class="topic__panel"><div>
-              <p>Sim. O atendimento online e o processo eletrônico permitem a atuação em casos de outros estados, observadas as particularidades de cada situação.</p>
+              <p>Sim. O atendimento online e o processo eletrônico permitem a atuação em casos de outros estados.</p>
+            </div></div>
+          </li>
+          <li class="faq__item">
+            <h3><button class="faq__toggle" type="button" aria-expanded="false">
+              <span>Quais documentos devo apresentar?</span><i class="plus" aria-hidden="true"></i>
+            </button></h3>
+            <div class="topic__panel"><div>
+              <p>Em geral, o contrato ou a carteirinha do plano, os comprovantes de pagamento, o relatório médico e eventual negativa. Para médicos, a notificação recebida. A análise pode começar com o que estiver disponível.</p>
             </div></div>
           </li>
           <li class="faq__item">
@@ -426,23 +413,15 @@
               <span>O escritório atua judicial e extrajudicialmente?</span><i class="plus" aria-hidden="true"></i>
             </button></h3>
             <div class="topic__panel"><div>
-              <p>Sim. A atuação abrange a via extrajudicial, como notificações e requerimentos administrativos, e a via judicial, quando necessária. Em Direito Médico, inclui também a defesa em sindicâncias e processos ético-profissionais perante o CRM.</p>
-            </div></div>
-          </li>
-          <li class="faq__item">
-            <h3><button class="faq__toggle" type="button" aria-expanded="false">
-              <span>Como funciona o primeiro contato pelo WhatsApp?</span><i class="plus" aria-hidden="true"></i>
-            </button></h3>
-            <div class="topic__panel"><div>
-              <p>Você descreve brevemente a situação. Em seguida, são indicados os documentos necessários para a análise e as próximas etapas do atendimento. As informações compartilhadas são tratadas com sigilo profissional.</p>
+              <p>Sim. A atuação abrange medidas extrajudiciais, a via judicial quando necessária e a defesa em procedimentos perante o CRM.</p>
             </div></div>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- 8. CTA final -->
-    <section class="section closing" id="contato" aria-labelledby="contato-titulo">
+    <!-- 9. CTA final -->
+    <section class="section section--off closing" id="contato" aria-labelledby="contato-titulo">
       <div class="container container--narrow reveal">
         <h2 id="contato-titulo">Precisa de orientação jurídica?</h2>
         <p>Entre em contato para apresentar sua situação e saber como podemos orientar o seu caso.</p>
@@ -455,7 +434,7 @@
 
   </main>
 
-  <!-- 9. Rodapé -->
+  <!-- 10. Rodapé -->
   <footer class="footer">
     <div class="container footer__grid">
       <div>
