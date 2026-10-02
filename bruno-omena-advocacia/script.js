@@ -61,40 +61,6 @@ function acompanharArea() {
   secoes.forEach((secao) => observer.observe(secao));
 }
 
-/* Perguntas frequentes: uma resposta aberta por vez, com expansão suave. */
-function configurarAccordions() {
-  document.querySelectorAll('[data-accordion]').forEach((grupo, g) => {
-    const itens = [...grupo.children];
-
-    const fechar = (item) => {
-      item.classList.remove('is-open');
-      item.querySelector('button').setAttribute('aria-expanded', 'false');
-      item.querySelector('.topic__panel').inert = true;
-    };
-
-    itens.forEach((item, i) => {
-      const botao = item.querySelector('button');
-      const painel = item.querySelector('.topic__panel');
-      const id = `painel-${g}-${i}`;
-
-      painel.id = id;
-      painel.setAttribute('role', 'region');
-      botao.setAttribute('aria-controls', id);
-      painel.inert = true;
-
-      botao.addEventListener('click', () => {
-        const abrir = !item.classList.contains('is-open');
-        itens.forEach(fechar);
-        if (abrir) {
-          item.classList.add('is-open');
-          botao.setAttribute('aria-expanded', 'true');
-          painel.inert = false;
-        }
-      });
-    });
-  });
-}
-
 /* Temas: a grade mostra só ícone e título. O clique abre o detalhe abaixo da
    grade e adapta a mensagem do botão da área ao tema escolhido. */
 function configurarTemas() {
@@ -215,7 +181,6 @@ function configurarDialogos() {
 
 configurarLinks();
 acompanharArea();
-configurarAccordions();
 configurarTemas();
 configurarMenu();
 configurarEntradas();
