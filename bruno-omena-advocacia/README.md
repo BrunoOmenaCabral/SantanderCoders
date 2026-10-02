@@ -3,11 +3,17 @@
 Site one-page em HTML, CSS e JavaScript puros, sem dependências nem etapa de build.
 Basta abrir `index.html` ou publicar a pasta em qualquer hospedagem estática.
 
+## Publicação
+
+Cada envio à branch `main` publica o site no GitHub Pages pelo workflow
+`.github/workflows/pages.yml`. Na primeira vez, é preciso ativar o Pages em
+**Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
 ## Antes de publicar
 
 | O que | Onde |
 | --- | --- |
-| Número do WhatsApp (DDI + DDD, ex.: `5581999999999`), e-mail e Instagram | bloco `CONFIG` no início de `script.js` |
+| Instagram (WhatsApp e e-mail já configurados) | bloco `CONFIG` no início de `script.js` |
 | Número da OAB | `index.html`, buscar por `[INSERIR NÚMERO]` (seção Sobre e rodapé) |
 | Logomarca oficial | substituir `assets/logo.svg` (mesmo nome) |
 | Fotografia profissional | salvar em `assets/` e trocar o `src` da imagem na seção Sobre |

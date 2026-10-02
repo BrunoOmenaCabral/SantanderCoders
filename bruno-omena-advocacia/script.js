@@ -3,8 +3,8 @@
    whatsapp: número com DDI e DDD, ex.: '5581999999999'
    ========================================================= */
 const CONFIG = {
-  whatsapp: '[INSERIR NÚMERO DO WHATSAPP]',
-  email: '[INSERIR E-MAIL]',
+  whatsapp: '5581999157026',
+  email: 'brunoomena.adv@gmail.com',
   instagram: '[INSERIR USUÁRIO DO INSTAGRAM]',
 };
 
