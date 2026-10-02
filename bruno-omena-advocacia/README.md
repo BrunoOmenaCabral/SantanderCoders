@@ -9,22 +9,10 @@ Cada envio à branch `main` publica o site no GitHub Pages pelo workflow
 `.github/workflows/pages.yml`. Na primeira vez, é preciso ativar o Pages em
 **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 
-## Pendências
+## Imagens
 
-| O que | Onde |
-| --- | --- |
-| Logomarca oficial | substituir `assets/logo.svg` (mesmo nome) |
-| Fotografia profissional | salvar em `assets/` e trocar o `src` da imagem na seção Sobre |
-
-As mensagens iniciais do WhatsApp ficam no objeto `MENSAGENS` em `script.js`.
-Os links das seções de Direito da Saúde e Direito Médico usam a mensagem da área,
-e o link de cada card acrescenta o tema (por exemplo, "negativa de cobertura").
-O botão flutuante acompanha a área visível na tela.
-
-## Estrutura
-
-- `index.html`: conteúdo, ícones (SVG inline), SEO e textos legais
-- `styles.css`: identidade visual e responsividade
-- `script.js`: links do WhatsApp, accordions, menu móvel e animações de entrada
+- `assets/logo.png`: logomarca (cabeçalho)
+- `assets/simbolo.png`: símbolo "B" (abertura da página e ícone da aba)
+- `assets/foto-bruno-omena.jpg`: fotografia da seção Sobre, recortada em 4:5
 
 Contatos (WhatsApp, e-mail e Instagram) ficam no bloco `CONFIG` de `script.js`.

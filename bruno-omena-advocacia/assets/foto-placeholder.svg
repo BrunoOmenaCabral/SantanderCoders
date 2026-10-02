@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Espaço reservado para a fotografia profissional">
-  <!-- Substitua por assets/foto-bruno-omena.jpg e ajuste o src no index.html -->
-  <rect width="400" height="500" fill="#EEF0F3"/>
-  <circle cx="200" cy="200" r="62" fill="none" stroke="#B9C2CF" stroke-width="1.5"/>
-  <path d="M96 420c10-66 54-110 104-110s94 44 104 110" fill="none" stroke="#B9C2CF" stroke-width="1.5"/>
-</svg>
