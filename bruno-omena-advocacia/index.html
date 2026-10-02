@@ -111,16 +111,30 @@
 
   <main id="conteudo">
 
-    <!-- 2. Hero -->
+    <!-- 2. Hero, com o profissional ao lado -->
     <section class="hero" aria-labelledby="hero-titulo">
-      <div class="container hero__inner">
-        <img class="hero__logo" src="assets/logo.png" alt="Bruno Omena Advocacia" width="993" height="317">
-        <h1 id="hero-titulo" class="hero__title">Direito da Saúde<br> e Direito Médico</h1>
-        <p class="hero__lead">Atuação jurídica voltada à proteção de pacientes, profissionais e empresas da área da saúde.</p>
-        <a class="btn" href="https://wa.me/" data-wa="geral">
-          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
-          Conversar com um advogado
-        </a>
+      <div class="container hero__grid">
+        <div class="hero__inner">
+          <img class="hero__logo" src="assets/logo.png" alt="Bruno Omena Advocacia" width="993" height="317">
+          <h1 id="hero-titulo" class="hero__title">Direito da Saúde<br> e Direito Médico</h1>
+          <p class="hero__lead">Atuação jurídica voltada à proteção de pacientes, profissionais e empresas da área da saúde.</p>
+          <a class="btn" href="https://wa.me/" data-wa="geral">
+            <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            Conversar com um advogado
+          </a>
+        </div>
+
+        <aside class="about" id="sobre" aria-labelledby="sobre-titulo">
+          <figure class="about__photo">
+            <img src="assets/foto-bruno-omena.jpg" alt="Bruno Omena, advogado" width="720" height="900">
+          </figure>
+          <div class="about__text">
+            <h2 id="sobre-titulo" class="eyebrow eyebrow--title">Sobre o profissional</h2>
+            <p class="about__name">Bruno Omena</p>
+            <p class="about__role">Advogado Cível <span aria-hidden="true">·</span> OAB/PE nº 53.699</p>
+            <p>Atuação jurídica nas áreas de Direito da Saúde e Direito Médico, com experiência na defesa de direitos de pacientes e na orientação e defesa de profissionais da área da saúde.</p>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -331,23 +345,8 @@
       </div>
     </section>
 
-    <!-- 6. Sobre o profissional -->
-    <section class="section" id="sobre" aria-labelledby="sobre-titulo">
-      <div class="container about">
-        <figure class="about__photo reveal">
-          <img src="assets/foto-bruno-omena.jpg" alt="Bruno Omena, advogado" width="720" height="900" loading="lazy">
-        </figure>
-        <div class="about__text reveal">
-          <h2 id="sobre-titulo" class="eyebrow eyebrow--title">Sobre o profissional</h2>
-          <p class="about__name">Bruno Omena</p>
-          <p class="about__role">Advogado Cível <span aria-hidden="true">·</span> OAB/PE nº 53.699</p>
-          <p>Atuação jurídica nas áreas de Direito da Saúde e Direito Médico, com experiência na defesa de direitos de pacientes e na orientação e defesa de profissionais da área da saúde.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. Como funciona -->
-    <section class="section section--off" aria-labelledby="funciona-titulo">
+    <!-- 6. Como funciona -->
+    <section class="section" aria-labelledby="funciona-titulo">
       <div class="container">
         <header class="section__head reveal">
           <h2 id="funciona-titulo">Como funciona o atendimento</h2>
@@ -376,8 +375,8 @@
       </div>
     </section>
 
-    <!-- 8. FAQ -->
-    <section class="section" aria-labelledby="faq-titulo">
+    <!-- 7. FAQ -->
+    <section class="section section--off" aria-labelledby="faq-titulo">
       <div class="container container--narrow">
         <header class="section__head reveal">
           <h2 id="faq-titulo">Perguntas frequentes</h2>
@@ -420,8 +419,8 @@
       </div>
     </section>
 
-    <!-- 9. CTA final -->
-    <section class="section section--off closing" id="contato" aria-labelledby="contato-titulo">
+    <!-- 8. CTA final -->
+    <section class="section closing" id="contato" aria-labelledby="contato-titulo">
       <div class="container container--narrow reveal">
         <h2 id="contato-titulo">Precisa de orientação jurídica?</h2>
         <p>Entre em contato para apresentar sua situação e saber como podemos orientar o seu caso.</p>
@@ -434,7 +433,7 @@
 
   </main>
 
-  <!-- 10. Rodapé -->
+  <!-- 9. Rodapé -->
   <footer class="footer">
     <div class="container footer__grid">
       <div>
